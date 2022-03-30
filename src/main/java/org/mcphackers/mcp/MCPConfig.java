@@ -6,6 +6,8 @@ public class MCPConfig {
 	//Directories
 	public static final String JARS = 	"jars/";
 	public static final String LIB = 	"lib/";
+	public static final String DEPS_C = LIB + "client/";
+	public static final String DEPS_S = LIB + "server/";
 	public static final String TEMP = 	"temp/";
 	public static final String SRC = 	"src/";
 	public static final String BIN = 	"bin/";
@@ -65,6 +67,9 @@ public class MCPConfig {
 	public boolean srcCleanup;
 	public String[] ignorePackages;
 	public int onlySide;
+	public int source;
+	public int target;
+	public String bootclasspath;
 	public String indentionString;
 	public boolean fullBuild;
 	public boolean runBuild;
@@ -80,6 +85,9 @@ public class MCPConfig {
 		patch = true;
 		srcCleanup = false;
 		onlySide = -1;
+		source = -1;
+		target = -1;
+		bootclasspath = null;
 		ignorePackages = new String[]{"paulscode", "com/jcraft", "isom"};
 		indentionString = "\t";
 		fullBuild = false;
@@ -92,6 +100,12 @@ public class MCPConfig {
 		switch (name) {
 			case "side":
 				onlySide = value;
+				break;
+			case "source":
+				source = value;
+				break;
+			case "target":
+				target = value;
 				break;
 			default:
 				// TODO: Cancel task
@@ -109,6 +123,9 @@ public class MCPConfig {
 				break;
 			case "setupversion":
 				setupVersion = value;
+				break;
+			case "bootclasspath":
+				bootclasspath = value;
 				break;
 			default:
 				// TODO: Cancel task

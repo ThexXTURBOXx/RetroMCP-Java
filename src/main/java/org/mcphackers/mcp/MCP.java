@@ -45,7 +45,7 @@ public class MCP {
 		}
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		SelfCommandPrompt.runWithCMD(SelfCommandPrompt.suggestAppId(), "RetroMCP " + VERSION, args, false, false);
 		attemptToDeleteUpdateJar();
 		AnsiConsole.systemInstall();
@@ -84,8 +84,10 @@ public class MCP {
 				logger.print(new Ansi().fgBrightCyan().a("> ").fgRgb(255,255,255));
 				String str = "";
 				try {
-					str = input.nextLine();
-				} catch (NoSuchElementException ignored) {}
+					str = input.nextLine().trim();
+				} catch (NoSuchElementException ignored) {
+					mode = EnumMode.exit;
+				}
 				logger.print(new Ansi().fgDefault());
 				args = str.split(" ");
 			}
